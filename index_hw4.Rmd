@@ -1,0 +1,17 @@
+---
+title: "hw4"
+author: "Junjie Hu"
+date: "2023-10-30"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    theme: cosmo
+---
+
+# This is Junjie's awesome page
+
+![](https://media.giphy.com/media/drXGoW1iudhKw/giphy.gif)
+
+# This is my cat coco
+![](coco.jpg)
