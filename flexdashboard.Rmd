@@ -1,0 +1,60 @@
+---
+title: "Dashboard for NYC resturant inspection"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+library(plotly)
+library(tidyverse)
+library(p8105.datasets)
+
+data("rest_inspec")
+```
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Chart A
+
+```{r}
+rest_inspec |> 
+  filter(boro != "Missing") |>
+  group_by(boro)|>
+  summarize(mean = mean(score, na.rm = TRUE)) |>
+  plot_ly(x = ~boro, y = ~mean, color = ~boro, type = "bar", colors = "viridis")
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Chart B
+
+```{r}
+rest_inspec |>
+  filter(cuisine_description %in% c("American", "Chinese", "Latin (Cuban, Dominican, Puerto Rican, South & Central American)", "Pizza", "Italian", "CafÃ©/Coffee/Tea", "Mexican", "Japanese")) |>
+  mutate(text_label = str_c("Resturant:", dba, "\nGrade:", grade, "\nScore", score))|>
+  mutate(cuisine_description = recode(cuisine_description, 
+                                      "Latin (Cuban, Dominican, Puerto Rican, South & Central American)" = "Latin", 
+                                      "CafÃ©/Coffee/Tea" = "Coffee")) |>
+    plot_ly(y = ~score, x = ~cuisine_description, type = "box", color = ~cuisine_description, colors = "viridis", text = ~text_label)
+```
+
+### Chart C
+
+```{r}
+rest_inspec |> 
+    filter(cuisine_description %in% c("American", "Chinese", "Latin (Cuban, Dominican, Puerto Rican, South & Central American)", "Pizza", "Italian", "CafÃ©/Coffee/Tea", "Mexican", "Japanese")) |>
+  separate(inspection_date, into = c("year", "month", "date"))|>
+  mutate(text_label = str_c("Resturant:", dba, "\nGrade:", grade, "\nScore", score))|>
+  group_by(year, text_label)|>
+  summarize(mean = mean(score, na.rm = TRUE)) |>
+  plot_ly(x = ~year, y = ~mean, color = ~year, type = "scatter", mode = "markers", text = ~text_label, alpha = 0.5)
+```
+
+```{r}
+rmarkdown::render("flexdashboard.Rmd", output_format = "flexdashboard::flex_dashboard")
+```
+
