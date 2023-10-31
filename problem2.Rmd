@@ -18,6 +18,7 @@ data("rest_inspec")
 
 ```{r}
 rest_inspec |> 
+  filter(boro != "Missing") |>
   group_by(boro)|>
   summarize(mean = mean(score, na.rm = TRUE)) |>
   plot_ly(x = ~boro, y = ~mean, color = ~boro, type = "bar", colors = "viridis")
@@ -33,43 +34,25 @@ rest_inspec |>
 
 ```{r}
 rest_inspec |>
-  filter(cuisine_description == c("American", "Chinese", "Latin (Cuban, Dominican, Puerto Rican, South & Central American)", "Pizza", "Italian", "CafÃ©/Coffee/Tea", "Mexican", "Japanese")) |>
+  filter(cuisine_description %in% c("American", "Chinese", "Latin (Cuban, Dominican, Puerto Rican, South & Central American)", "Pizza", "Italian", "CafÃ©/Coffee/Tea", "Mexican", "Japanese")) |>
   mutate(text_label = str_c("Resturant:", dba, "\nGrade:", grade, "\nScore", score))|>
-  plot_ly(
-    x = ~cuisine_description, y = ~score, type = "scatter", mode = "lines+markers",
-    color = ~cuisine_description, text = ~text_label, alpha = 0.5)
+  mutate(cuisine_description = recode(cuisine_description, 
+                                      "Latin (Cuban, Dominican, Puerto Rican, South & Central American)" = "Latin", 
+                                      "CafÃ©/Coffee/Tea" = "Coffee")) |>
+    plot_ly(y = ~score, 
+          x = ~cuisine_description, 
+          type = "box", 
+          color = ~cuisine_description,
+          colors = "viridis",
+          text = ~text_label)
 ```
 
 ```{r}
-
 rest_inspec |> 
-  group_by(cuisine_description)|>
+    filter(cuisine_description %in% c("American", "Chinese", "Latin (Cuban, Dominican, Puerto Rican, South & Central American)", "Pizza", "Italian", "CafÃ©/Coffee/Tea", "Mexican", "Japanese")) |>
+  separate(inspection_date, into = c("year", "month", "date"))|>
+  mutate(text_label = str_c("Resturant:", dba, "\nGrade:", grade, "\nScore", score))|>
+  group_by(year, text_label)|>
   summarize(mean = mean(score, na.rm = TRUE)) |>
-  mutate(cuisine_description = fct_reorder(cuisine_description, mean))|>
-  plot_ly(y = ~mean, color = ~cuisine_description, type = "box", colors = "viridis")
-```
-
-```{r}
-library(tidyverse)
-library(rnoaa)
-library(plotly)
-library(p8105.datasets)
-
-data("nynoaa")
-
-nynoaadat = 
-  read_csv("nynoaadat.csv") |>
-  janitor::clean_names() |>
-  separate(date, into = c("year", "month", "date")) 
-```
-
-```{r bar}
-nynoaadat |> 
-  group_by(year)|>
-  summarize(sum_prcp = sum(prcp, na.rm = TRUE)) |>
-  plot_ly(x = ~year, y = ~sum_prcp, color = ~year, type = "bar", colors = "viridis")
-```
-
-```{r}
-
+  plot_ly(x = ~year, y = ~mean, color = ~year, type = "scatter", mode = "markers", text = ~text_label, alpha = 0.5)
 ```
