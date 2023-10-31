@@ -1,0 +1,75 @@
+---
+title: "Problem 2"
+author: "Junjie Hu"
+date: "2023-10-30"
+output: html_document
+editor_options: 
+  chunk_output_type: inline
+---
+
+```{r echo = FALSE}
+library(plotly)
+library(tidyverse)
+library(p8105.datasets)
+
+data("rest_inspec")
+
+```
+
+```{r}
+rest_inspec |> 
+  group_by(boro)|>
+  summarize(mean = mean(score, na.rm = TRUE)) |>
+  plot_ly(x = ~boro, y = ~mean, color = ~boro, type = "bar", colors = "viridis")
+```
+
+```{r eval = false}
+rest_inspec |>
+  group_by(cuisine_description)|>
+  summarize(n = n()) |>
+  arrange(desc(n))
+```
+
+
+```{r}
+rest_inspec |>
+  filter(cuisine_description == c("American", "Chinese", "Latin (Cuban, Dominican, Puerto Rican, South & Central American)", "Pizza", "Italian", "CafÃ©/Coffee/Tea", "Mexican", "Japanese")) |>
+  mutate(text_label = str_c("Resturant:", dba, "\nGrade:", grade, "\nScore", score))|>
+  plot_ly(
+    x = ~cuisine_description, y = ~score, type = "scatter", mode = "lines+markers",
+    color = ~cuisine_description, text = ~text_label, alpha = 0.5)
+```
+
+```{r}
+
+rest_inspec |> 
+  group_by(cuisine_description)|>
+  summarize(mean = mean(score, na.rm = TRUE)) |>
+  mutate(cuisine_description = fct_reorder(cuisine_description, mean))|>
+  plot_ly(y = ~mean, color = ~cuisine_description, type = "box", colors = "viridis")
+```
+
+```{r}
+library(tidyverse)
+library(rnoaa)
+library(plotly)
+library(p8105.datasets)
+
+data("nynoaa")
+
+nynoaadat = 
+  read_csv("nynoaadat.csv") |>
+  janitor::clean_names() |>
+  separate(date, into = c("year", "month", "date")) 
+```
+
+```{r bar}
+nynoaadat |> 
+  group_by(year)|>
+  summarize(sum_prcp = sum(prcp, na.rm = TRUE)) |>
+  plot_ly(x = ~year, y = ~sum_prcp, color = ~year, type = "bar", colors = "viridis")
+```
+
+```{r}
+
+```

@@ -11,7 +11,8 @@ output:
 
 # This is Junjie's awesome page
 
-![](https://media.giphy.com/media/drXGoW1iudhKw/giphy.gif)
+![](junjie.jpg)
 
 # This is my cat coco
 ![](coco.jpg)
+

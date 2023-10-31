@@ -3,12 +3,14 @@ output_dir: "."
 navbar:
   title: "Home"
   right:
-    - text: "About"
+    - text: "About ME"
       href: about.html
     - icon: fa-envelope fa-lg
       href: mailto:<jh4617@cumc.columbia.edu>
     - icon: fa-github fa-lg
-      href: http://github.com/p8105_hw4_jh4617.github.io.git/
+      href: https://github.com/IamHJJ
+    - icon: fa-brands fa-instagram
+      href: https://www.instagram.com/jjunjie_hu/
 output:
   html_document:
     theme: cosmo

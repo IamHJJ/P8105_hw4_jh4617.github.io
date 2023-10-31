@@ -1,30 +1,66 @@
 ---
-title: "about"
-author: "Junjie Hu"
-date: "2023-10-30"
+title: "Things About Me"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+# Name
+**Junjie Hu**
 
-## R Markdown
+# Skills
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+**Language:** English, Mandarin
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+**Computer Skills:** SAS 9.4, R studio, Minitab, Microsoft Office (Excel, PowerPoint, Word)
 
-```{r cars}
-summary(cars)
-```
+**Lab Skills:** gel electrophoresis, PCR, CRISPR-Cas9, western blot, cloning, restriction enzyme digestion.
 
-## Including Plots
+# Education
 
-You can also embed plots, for example:
+**Columbia University**
 
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
+Master of Public Health, Major: Epidemiology, Certificate: Advanced Epi
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+Current GPA: 4.03/4.00 
+
+Core Courses: Epidemiology, SAS Statistical Computing, Applied Regression, Data Science (R)
+
+
+**University of California San Diego**
+
+Bachelor of Science, Major: General Biology 
+
+GPA: 3.83 (Cum Laude) 
+
+Awards: Distinction in Biology Division, UCSD Phi Beta Kappa, Warren College Provost honors
+
+
+# Research and Work Experiences
+
+**Los Angeles County, Department of Public Health, Division of HIV and STD Programs**
+
+  * Analyzed with raw HIV and STD Testing Services (HTS) dataset of over 5 million data points utilizing SAS 9.4
+  
+  * Developed project Sociodemographic Factors Associated with Pre-exposure Prophylaxis (PrEP) Refusal
+  
+  * Conducted comprehensive literature review, recoded variables, performed descriptive statistic tables, implemented multilevel GLIMMIX regression analysis, and drafted scientific manuscript
+  
+  * Created summary tables for 2022 Los Angeles County HIV Surveillance Annual Report
+  
+  * Collaborated with a multidisciplinary team and presented findings to the team
+  
+**Columbia University Research Fellowship**
+
+  * Processed Longitudinal Research on Aging Drivers dataset with over 9 million data points utilizing SAS
+
+  * Examined Association between Trait Anger and Driving Safety among Older Adult Drivers through SAS
+  
+  * Review comprehensive literatures, clean dataset, analyze bivariate analysis, and generate GEE longitudinal regression analysis.
+  
+**UCSD Senior Honor Program**
+
+  * Investigated the roles of Gretchen Hagen 3 (GH3) Group III genes in hormone homeostasis and plant
+development
+
+  * Constructed CRISPR-Cas9 vectors to knockout the GH3 genes and confirmed genotype
+
+  * Published thesis “Roles of the Group III GRETCHEN HAGEN 3 (GH3) genes in hormone homeostasis and plant development” on Saltman Quarterly Journal
