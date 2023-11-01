@@ -11,9 +11,11 @@ output:
 
 # This is Junjie's awesome page
 
-![](junjie.jpg)
 
 # This is my cat coco
+Say Hi to Coco ~~~
+
+
 ![](coco.jpg)
 
 
