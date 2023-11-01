@@ -24,14 +24,6 @@ rest_inspec |>
   plot_ly(x = ~boro, y = ~mean, color = ~boro, type = "bar", colors = "viridis")
 ```
 
-```{r eval = false}
-rest_inspec |>
-  group_by(cuisine_description)|>
-  summarize(n = n()) |>
-  arrange(desc(n))
-```
-
-
 ```{r}
 rest_inspec |>
   filter(cuisine_description %in% c("American", "Chinese", "Latin (Cuban, Dominican, Puerto Rican, South & Central American)", "Pizza", "Italian", "CafÃ©/Coffee/Tea", "Mexican", "Japanese")) |>
