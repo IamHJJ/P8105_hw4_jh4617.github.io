@@ -17,7 +17,7 @@ data("rest_inspec")
 Column {data-width=650}
 -----------------------------------------------------------------------
 
-### Chart A
+### Mean score across borough
 
 ```{r}
 rest_inspec |> 
@@ -30,7 +30,7 @@ rest_inspec |>
 Column {data-width=350}
 -----------------------------------------------------------------------
 
-### Chart B
+### Scores of top 8 cuisine types
 
 ```{r}
 rest_inspec |>
@@ -42,7 +42,7 @@ rest_inspec |>
     plot_ly(y = ~score, x = ~cuisine_description, type = "box", color = ~cuisine_description, colors = "viridis", text = ~text_label)
 ```
 
-### Chart C
+### Mean score of each cuisine across time
 
 ```{r}
 rest_inspec |> 
@@ -51,7 +51,7 @@ rest_inspec |>
   mutate(text_label = str_c("Resturant:", dba, "\nGrade:", grade, "\nScore", score))|>
   group_by(year, text_label)|>
   summarize(mean = mean(score, na.rm = TRUE)) |>
-  plot_ly(x = ~year, y = ~mean, color = ~year, type = "scatter", mode = "markers", text = ~text_label, alpha = 0.5)
+  plot_ly(x = ~year, y = ~mean, color = ~year, type = "scatter", mode = "markers", text = ~text_label, alpha = 0.3)
 ```
 
 
