@@ -11,6 +11,8 @@ navbar:
       href: https://github.com/IamHJJ
     - icon: fa-brands fa-instagram
       href: https://www.instagram.com/jjunjie_hu/
+    - text: "Problem 2: Dashboard for NYC resturant inspection"
+      href: flexdashboard.html
 output:
   html_document:
     theme: cosmo

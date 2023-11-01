@@ -1,0 +1,58 @@
+---
+title: "Problem 2"
+author: "Junjie Hu"
+date: "2023-10-30"
+output: html_document
+editor_options: 
+  chunk_output_type: inline
+---
+
+```{r echo = FALSE}
+library(plotly)
+library(tidyverse)
+library(p8105.datasets)
+
+data("rest_inspec")
+
+```
+
+```{r}
+rest_inspec |> 
+  filter(boro != "Missing") |>
+  group_by(boro)|>
+  summarize(mean = mean(score, na.rm = TRUE)) |>
+  plot_ly(x = ~boro, y = ~mean, color = ~boro, type = "bar", colors = "viridis")
+```
+
+```{r eval = false}
+rest_inspec |>
+  group_by(cuisine_description)|>
+  summarize(n = n()) |>
+  arrange(desc(n))
+```
+
+
+```{r}
+rest_inspec |>
+  filter(cuisine_description %in% c("American", "Chinese", "Latin (Cuban, Dominican, Puerto Rican, South & Central American)", "Pizza", "Italian", "CafÃ©/Coffee/Tea", "Mexican", "Japanese")) |>
+  mutate(text_label = str_c("Resturant:", dba, "\nGrade:", grade, "\nScore", score))|>
+  mutate(cuisine_description = recode(cuisine_description, 
+                                      "Latin (Cuban, Dominican, Puerto Rican, South & Central American)" = "Latin", 
+                                      "CafÃ©/Coffee/Tea" = "Coffee")) |>
+    plot_ly(y = ~score, 
+          x = ~cuisine_description, 
+          type = "box", 
+          color = ~cuisine_description,
+          colors = "viridis",
+          text = ~text_label)
+```
+
+```{r}
+rest_inspec |> 
+    filter(cuisine_description %in% c("American", "Chinese", "Latin (Cuban, Dominican, Puerto Rican, South & Central American)", "Pizza", "Italian", "CafÃ©/Coffee/Tea", "Mexican", "Japanese")) |>
+  separate(inspection_date, into = c("year", "month", "date"))|>
+  mutate(text_label = str_c("Resturant:", dba, "\nGrade:", grade, "\nScore", score))|>
+  group_by(year, text_label)|>
+  summarize(mean = mean(score, na.rm = TRUE)) |>
+  plot_ly(x = ~year, y = ~mean, color = ~year, type = "scatter", mode = "markers", text = ~text_label, alpha = 0.5)
+```

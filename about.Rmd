@@ -1,6 +1,10 @@
 ---
 title: "Things About Me"
-output: html_document
+output: 
+  html_document:
+        toc: true
+        toc_float: true
+
 ---
 
 # Name

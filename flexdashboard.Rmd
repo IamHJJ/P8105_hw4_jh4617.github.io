@@ -6,7 +6,7 @@ output:
     vertical_layout: fill
 ---
 
-```{r setup, include=FALSE}
+```{r include=FALSE}
 library(plotly)
 library(tidyverse)
 library(p8105.datasets)
@@ -54,7 +54,4 @@ rest_inspec |>
   plot_ly(x = ~year, y = ~mean, color = ~year, type = "scatter", mode = "markers", text = ~text_label, alpha = 0.5)
 ```
 
-```{r}
-rmarkdown::render("flexdashboard.Rmd", output_format = "flexdashboard::flex_dashboard")
-```
 
